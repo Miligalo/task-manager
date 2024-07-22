@@ -38,20 +38,4 @@ final class TaskRepository extends Repository
         return $query->orderBy('tasks.id')
             ->paginate(self::PAGINATE_COUNT);
     }
-
-    public function addUser(array $validated, Team $team): bool
-    {
-        $user = User::find($validated['user_id']);
-
-        $team->users()->attach($user);
-
-        return true;
-    }
-
-    public function removeUser(Team $team, User $user): bool
-    {
-        $team->users()->detach($user);
-
-        return true;
-    }
 }
